@@ -84,4 +84,5 @@ def upload_pdf():
     return jsonify({"message": str(table_count - 1) + " tables created successfully!"})
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    port = int(os.environ.get("PORT", 5000))  # Use Render's assigned port
+    app.run(debug=True, host='0.0.0.0', port=port)
