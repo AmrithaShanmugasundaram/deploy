@@ -1,4 +1,5 @@
 from flask import Flask, request, jsonify
+import psycopg2
 import mysql.connector
 import pandas as pd
 import pdfplumber
@@ -11,11 +12,12 @@ if not os.path.exists(UPLOAD_FOLDER):
     os.makedirs(UPLOAD_FOLDER)
 
 def get_db_connection():
-    return mysql.connector.connect(
-        host=os.getenv("DB_HOST", "localhost"),
-        user=os.getenv("DB_USER", "root"),
-        password=os.getenv("DB_PASSWORD", "Train@1234"),
-        database=os.getenv("DB_NAME", "emp_report_new1")
+    return psycopg2.connect(
+        host=os.getenv("PG_HOST", "dpg-cv5f618gph6c73arujt0-a"),
+        database=os.getenv("PG_DATABASE", "dbflask_hd2w"),
+        user=os.getenv("PG_USER", "dbflask_hd2w_user"),
+        password=os.getenv("PG_PASSWORD", "CICYayPUt3eaExDq7dXi9kCZ892i02X2"),
+        port=os.getenv("PG_PORT", "5432")
     )
 
 @app.route('/upload-pdf', methods=['POST'])
