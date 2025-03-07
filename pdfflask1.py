@@ -13,11 +13,11 @@ if not os.path.exists(UPLOAD_FOLDER):
 
 def get_db_connection():
     return psycopg2.connect(
-        host=os.getenv("PG_HOST", "dpg-cv5f618gph6c73arujt0-a"),
-        database=os.getenv("PG_DATABASE", "dbflask_hd2w"),
-        user=os.getenv("PG_USER", "dbflask_hd2w_user"),
-        password=os.getenv("PG_PASSWORD", "CICYayPUt3eaExDq7dXi9kCZ892i02X2"),
-        port=os.getenv("PG_PORT", "5432")
+        host=os.getenv("PG_HOST"),
+        database=os.getenv("PG_DATABASE"),
+        user=os.getenv("PG_USER"),
+        password=os.getenv("PG_PASSWORD"),
+        port=os.getenv("PG_PORT")
     )
 
 @app.route('/upload-pdf', methods=['POST'])
